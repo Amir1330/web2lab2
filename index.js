@@ -21,6 +21,9 @@ const authRoutes = require('./routes/auth');
 app.use('/api/auth', authRoutes);
 app.use('/api/tasks', taskRoutes);
 
+// Serve static files
+app.use(express.static('public'));
+
 // Error handling middleware
 app.use((err, req, res, next) => {
     console.error(err.stack);
