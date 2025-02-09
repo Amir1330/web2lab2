@@ -1,6 +1,6 @@
 // Global variables
 let token = localStorage.getItem('token');
-const API_URL = 'http://localhost:3000/api';
+const API_URL = 'http://localhost:8080/api';
 
 // Show/hide forms
 function showForm(formType) {
@@ -94,15 +94,23 @@ function displayTasks(tasks) {
     tasks.forEach(task => {
         const taskElement = document.createElement('div');
         taskElement.className = 'task-card';
+        
+        const statusButtonClass = task.status === 'completed' ? 'status-btn' : '';
+        
         taskElement.innerHTML = `
             <div>
                 <h3>${task.title}</h3>
-                <p>${task.description || ''}</p>
-                <small>Due: ${new Date(task.dueDate).toLocaleDateString()}</small>
+                <p>${task.description || 'No description'}</p>
+                <small><i class="far fa-calendar"></i> Due: ${new Date(task.dueDate).toLocaleDateString()}</small>
             </div>
-            <div>
-                <button onclick="toggleTaskStatus('${task._id}', '${task.status}')">${task.status}</button>
-                <button onclick="deleteTask('${task._id}')" style="background: var(--error-color);">Delete</button>
+            <div class="task-actions">
+                <button class="${statusButtonClass}" onclick="toggleTaskStatus('${task._id}', '${task.status}')">
+                    <i class="fas ${task.status === 'completed' ? 'fa-check-circle' : 'fa-circle'}"></i>
+                    ${task.status === 'completed' ? 'Completed' : 'Mark Complete'}
+                </button>
+                <button class="delete-btn" onclick="deleteTask('${task._id}')">
+                    <i class="fas fa-trash-alt"></i> Delete
+                </button>
             </div>
         `;
         tasksList.appendChild(taskElement);

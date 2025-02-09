@@ -37,16 +37,20 @@
         <!-- Tasks Container -->
         <div id="tasks-container" class="tasks-container hidden">
             <header>
-                <h1>My Tasks</h1>
-                <button id="logout-btn" onclick="logout()">Logout</button>
+                <h1><i class="fas fa-tasks"></i> My Tasks</h1>
+                <button id="logout-btn" onclick="logout()">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </button>
             </header>
 
             <div class="add-task-container">
                 <form id="add-task-form">
-                    <input type="text" placeholder="Task title" required>
-                    <textarea placeholder="Description"></textarea>
+                    <input type="text" placeholder="What needs to be done?" required>
+                    <textarea placeholder="Add some details..."></textarea>
                     <input type="date" required>
-                    <button type="submit">Add Task</button>
+                    <button type="submit">
+                        <i class="fas fa-plus"></i> Add Task
+                    </button>
                 </form>
             </div>
 
